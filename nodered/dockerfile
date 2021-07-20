@@ -1,1 +1,21 @@
 FROM nodered/node-red:latest
+
+#zusatzinfos hinzufügen
+LABEL maintainer "dein Name"
+LABEL Version "1.0"
+LABEL TAG "NodeRed dein Name Style"
+
+#copy assets into directory
+COPY /provisioning/styling/newcss.css /usr/src/app/styling
+
+#copy settings.js file to /data directory
+COPY /provisioning/config/settings.js /data
+
+#copy flow file from local dir to host to /data
+COPY /provisioning/flows/flows.json /data
+
+#copy flows to library
+COPY /provisioning/lib/flows/ /data/lib/flows/
+
+#copy theme Styling to Theme Library
+COPY /provisioning/lib/themes/ /data/lib/themes

@@ -1,7 +1,16 @@
 version: "3"
 services:
   nodered: 
-    build: ./nodered
+    build: 
+      context: ./nodered
+      dockerfile: Dockerfile.custom
+      args: 
+        ARCH: arm32v7
+        NODE_VERSION: 12
+        NODE_RED_VERSION: 1.3.5
+        OS: alpine
+        BUILD_DATE: 20.07.2021
+        TAG_SUFFIX: default
     image: localbuild/nodered:april2021
     container_name: nodered
     restart: unless-stopped
